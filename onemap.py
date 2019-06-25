@@ -1,6 +1,9 @@
 import arcpy
 
-def create_onemap_feature(out_dir, out_name): 
+def one_map_gdb(out_dir, out_name):
+    arcpy.CreateFileGDB_management(out_dir, out_name)
+
+def one_map_feature(out_dir, out_name): 
 
   fields = [
     ['BufferType','Text',12],
@@ -45,7 +48,7 @@ def create_onemap_feature(out_dir, out_name):
 
   for x in fields:
     if x[2] != 'NA':
-      arcpy.AddField_management(
+    ield_management(
         in_table = r'{0}\{1}'.format(out_location, out_name), 
         field_name = x[0], 
         field_type = x[1],
@@ -56,7 +59,13 @@ def create_onemap_feature(out_dir, out_name):
         field_name = x[0], 
         field_type = x[1])
 
+
+
 arcpy.Delete_management(r'{0}\{1}'.format(out_location, out_name))
 out_location = r'C:\Users\brownr\Desktop\db\PoncyA\OneMap\OneMap.gdb'
 out_name = 'OneMap'
 create_onemap_feature(out_location, out_name)
+
+arcpy.CreateFileGDB_management(out_folder_path, out_name)
+#arcpy.CreateDomain_management("montgomery.gdb", domName, "Valid pipe materials", "TEXT", "CODED")
+#arcpy.AssignDomainToField_management(in_table, field_name, domain_name, {subtype_code})

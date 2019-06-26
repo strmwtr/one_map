@@ -38,7 +38,7 @@ def one_map_feature(gdb_path, out_name, out_ft, fields):
         field_name = field[0], 
         field_type = field[1])
 
-def assign_domains(fields):
+def assign_domains(gdb_path, fields):
   '''Assigns domains to OneMap features'''
   for field in fields:
     if field[3] != 'NA':
@@ -100,6 +100,6 @@ def calls(out_dir):
   one_map_gdb(out_dir,out_name)
   one_map_domains(gdb_path, domain_list)
   one_map_feature(gdb_path, out_name, out_ft, fields)
-  assign_domains(fields)
+  assign_domains(gdb_path, fields)
 
 calls(r'C:\Users\brownr\Desktop\db\PoncyA\OneMap')

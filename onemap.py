@@ -97,7 +97,7 @@ def calls(out_dir):
     ]
         
   arcpy.Delete_management(gdb_path)
-  one_map_gdb(gdb_path,out_name)
+  one_map_gdb(gdb_dir,out_name)
   one_map_domains(gdb_path, domain_list)
   one_map_feature(gdb_path, out_name)
   assign_domains(fields)

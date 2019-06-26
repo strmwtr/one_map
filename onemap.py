@@ -8,14 +8,14 @@ Repo: https://github.com/strmwtr/one_map
 import arcpy
 
 def one_map_gdb(out_dir, gdb_name):
-    '''Creates geodatabase to house data. out_dir is an existing directory
-       gdb_name is the name of the gdb'''
-    arcpy.CreateFileGDB_management(out_dir, gdb_name)
+  '''Creates geodatabase to house data.'''  
+  arcpy.CreateFileGDB_management(out_dir, gdb_name)
 
-def one_map_domains(gdb_path):
+def one_map_domains(gdb_path, domain_list):
     '''Creates the domains for the fields. Domains were outlined by One Map 
        steering committee '''
-    arcpy.CreateDomain_management(gdb_path, domName, "Valid pipe materials", "TEXT", "CODED")
+  for dom in domain_list:
+    arcpy.CreateDomain_management(gdb_path, dom[0], field_type = "TEXT")
 
 def one_map_feature(out_dir, out_name, fields): 
   '''Creates One Map polyline feature class'''
@@ -43,8 +43,8 @@ def assign_domains():
   '''Assigns domains to OneMap features'''
   arcpy.AssignDomainToField_management(out_ft, field_name, domain_name)
 
+
 calls():
-    arcpy.Delete_management(r'{0}\{1}'.format(out_location, out_name))
     out_location = r'C:\Users\brownr\Desktop\db\PoncyA\OneMap\OneMap.gdb'
     out_dir =   r'C:\Users\brownr\Desktop\db\PoncyA\OneMap'
     gdb_name = r'OneMap.gdb'
@@ -86,5 +86,17 @@ calls():
         ['YearBuilt','Short','NA']
         ]
 
+    domain_list = [    
+        ['BufferType','Text',['Barrier', 'Parking Lane', 'Delineators', 'None']],
+        ['DataSource','Text',['County', 'City', 'TJPDC', 'UVA']],
+        ['MagisterialDistrict','Text',['Rivanna', 'Scottsville', 'White Hall', 'Jack Jouett', 'Samuel Miller', 'Rio', 'City'],
+        ['OwnershipType','Text',['Public', 'Private', 'Private with Easement']],
+        ['Planning Status','Text',['Proposed', 'Prioritized', 'Planning', 'Design', 'Application Submitted', 'Funded', 'Under Construction', 'Complete']],
+        ['Status','Text',['Exisiting', 'Future']],
+        ['FacilityType','Text',['Sidewalk', 'Urban Sidewalk', 'Pedestrian Path', 'Shared Roadway', 'Bike Lane', 'Paved Shoulder', 'Shared Use Path', 'Urban Shared Use Path', 'Trail Class A', 'Trail Class B']],
+        ['YN','TEXT',['YES', 'NO', 'NA']] #Easement, Curbs, Signage 
+        ]
+        
+    arcpy.Delete_management(gdb_path)
     one_map_gdb(out_location,out_name)
     one_map_feature(out_location, out_name)

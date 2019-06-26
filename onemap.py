@@ -48,8 +48,8 @@ def assign_domains(fields):
 def calls(out_dir):
   gdb_name = r'OneMap.gdb'
   out_name = 'OneMap'
-  out_ft = f'{gdb_path}\\{out_name}'
   gdb_path = f'{out_dir}\\{gdb_name}'
+  out_ft = f'{gdb_path}\\{out_name}'
 
   fields = [
     ['BufferType','Text',12, 'BufferType'],

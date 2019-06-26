@@ -45,7 +45,7 @@ def assign_domains(fields):
       arcpy.AssignDomainToField_management(gdb_path, field[0], field[3])
 
 
-calls(out_dir):
+def calls(out_dir):
   gdb_name = r'OneMap.gdb'
   out_name = 'OneMap'
   out_ft = f'{gdb_path}/{out_name}'

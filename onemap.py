@@ -12,8 +12,7 @@ def one_map_gdb(out_dir, gdb_name):
   arcpy.CreateFileGDB_management(out_dir, gdb_name)
 
 def one_map_domains(gdb_path, domain_list):
-    '''Creates the domains for the fields. Domains were outlined by One Map 
-       steering committee '''
+  '''Creates the domains for the fields. Domains were outlined by One Map steering committee '''
   for dom in domain_list:
     arcpy.CreateDomain_management(gdb_path, dom[0], field_type = "TEXT")
 
@@ -43,65 +42,64 @@ def assign_domains(fields):
   '''Assigns domains to OneMap features'''
   for field in fields:
     if field[3] != 'NA':
-    arcpy.AssignDomainToField_management(gdb_path, field[0], field[3])
+      arcpy.AssignDomainToField_management(gdb_path, field[0], field[3])
 
 
 calls(out_dir):
-    gdb_name = r'OneMap.gdb'
-    out_name = 'OneMap'
-    out_ft = f'{gdb_path}/{out_name}'
-    gdb_path = f'{out_dir}/{gdb_name}'
+  gdb_name = r'OneMap.gdb'
+  out_name = 'OneMap'
+  out_ft = f'{gdb_path}/{out_name}'
+  gdb_path = f'{out_dir}/{gdb_name}'
 
-    fields = [
-        ['BufferType','Text',12, 'BufferType'],
-        ['BufferWidthFeet','Short','NA','NA'],
-        ['CommunityAdvisoryCommittee','Text',100,'NA'],
-        ['Condition','Text',20,'NA'],
-        ['ConditionDate','Date','NA','NA'],
-        ['Curbs','Text',3,'NA'],
-        ['DataSource','Text',5, 'DataSource'],
-        ['Easement','Text',3, 'YN'],
-        ['LastEditor','Text',50,'NA'],
-        ['LastEditedDate','Date','NA','NA'],
-        ['MagisterialDistrict','Text',20,'MagisterialDistrict'],
-        ['Maintenance','Text',20,'NA'],
-        ['Name','Text',100,'NA'],
-        ['Notes','Text',500,'NA'],
-        ['OwnerName','Text',100,'NA'],
-        ['OwnershipType','Text',25,'OwnershipType'],
-        ['PlanningStatus','Text',25,'PlanningStatus'],
-        ['PriorityRank2018','Short','NA','NA'],
-        ['PriorityRank2019','Short','NA','NA'],
-        ['RoadAADT','Short','NA','NA'],
-        ['RoadSpeedLimit','Short','NA','NA'],
-        ['RouteName','Text',100,'NA'],
-        ['RouteNumber','Text',8,'NA'],
-        ['Signage','Text',3,'YN'],
-        ['SourceDocument','Text',100,'NA'],
-        ['Status','Text',9,'Status'],
-        ['SurfaceMaterial','Text',20,'NA'],
-        ['SurfaceCondition','Text',10,'NA'],
-        ['FacilityType','Text',25,'FacilityType'],
-        ['WidthFeet','Short','NA','NA'],
-        ['YearBuilt','Short','NA','NA']
-        ]
+  fields = [
+    ['BufferType','Text',12, 'BufferType'],
+    ['BufferWidthFeet','Short','NA','NA'],
+    ['CommunityAdvisoryCommittee','Text',100,'NA'],
+    ['Condition','Text',20,'NA'],
+    ['ConditionDate','Date','NA','NA'],
+    ['Curbs','Text',3,'NA'],
+    ['DataSource','Text',5, 'DataSource'],
+    ['Easement','Text',3, 'YN'],
+    ['LastEditor','Text',50,'NA'],
+    ['LastEditedDate','Date','NA','NA'],
+    ['MagisterialDistrict','Text',20,'MagisterialDistrict'],
+    ['Maintenance','Text',20,'NA'],
+    ['Name','Text',100,'NA'],
+    ['Notes','Text',500,'NA'],
+    ['OwnerName','Text',100,'NA'],
+    ['OwnershipType','Text',25,'OwnershipType'],
+    ['PlanningStatus','Text',25,'PlanningStatus'],
+    ['PriorityRank2018','Short','NA','NA'],
+    ['PriorityRank2019','Short','NA','NA'],
+    ['RoadAADT','Short','NA','NA'],
+    ['RoadSpeedLimit','Short','NA','NA'],
+    ['RouteName','Text',100,'NA'],
+    ['RouteNumber','Text',8,'NA'],
+    ['Signage','Text',3,'YN'],
+    ['SourceDocument','Text',100,'NA'],
+    ['Status','Text',9,'Status'],
+    ['SurfaceMaterial','Text',20,'NA'],
+    ['SurfaceCondition','Text',10,'NA'],
+    ['FacilityType','Text',25,'FacilityType'],
+    ['WidthFeet','Short','NA','NA'],
+    ['YearBuilt','Short','NA','NA']
+    ]
 
-    domain_list = [    
-        ['BufferType','Text',['Barrier', 'Parking Lane', 'Delineators', 'None']],
-        ['DataSource','Text',['County', 'City', 'TJPDC', 'UVA']],
-        ['MagisterialDistrict','Text',['Rivanna', 'Scottsville', 'White Hall', 'Jack Jouett', 'Samuel Miller', 'Rio', 'City'],
-        ['OwnershipType','Text',['Public', 'Private', 'Private with Easement']],
-        ['PlanningStatus','Text',['Proposed', 'Prioritized', 'Planning', 'Design', 'Application Submitted', 'Funded', 'Under Construction', 'Complete']],
-        ['Status','Text',['Exisiting', 'Future']],
-        ['FacilityType','Text',['Sidewalk', 'Urban Sidewalk', 'Pedestrian Path', 'Shared Roadway', 'Bike Lane', 'Paved Shoulder', 'Shared Use Path', 'Urban Shared Use Path', 'Trail Class A', 'Trail Class B']],
-        ['YN','TEXT',['YES', 'NO', 'NA']] #Easement, Curbs, Signage 
-        ]
+  domain_list = [    
+    ['BufferType','Text',['Barrier', 'Parking Lane', 'Delineators', 'None']],
+    ['DataSource','Text',['County', 'City', 'TJPDC', 'UVA']],
+    ['MagisterialDistrict','Text',['Rivanna', 'Scottsville', 'White Hall', 'Jack Jouett', 'Samuel Miller', 'Rio', 'City'],
+    ['OwnershipType','Text',['Public', 'Private', 'Private with Easement']],
+    ['PlanningStatus','Text',['Proposed', 'Prioritized', 'Planning', 'Design', 'Application Submitted', 'Funded', 'Under Construction', 'Complete']],
+    ['Status','Text',['Exisiting', 'Future']],
+    ['FacilityType','Text',['Sidewalk', 'Urban Sidewalk', 'Pedestrian Path', 'Shared Roadway', 'Bike Lane', 'Paved Shoulder', 'Shared Use Path', 'Urban Shared Use Path', 'Trail Class A', 'Trail Class B']],
+    ['YN','TEXT',['YES', 'NO', 'NA']] #Easement, Curbs, Signage 
+    ]
         
-    arcpy.Delete_management(gdb_path)
-    one_map_gdb(gdb_path,out_name)
-    one_map_domains(gdb_path, domain_list)
-    one_map_feature(gdb_path, out_name)
-    assign_domains(fields)
-
+  arcpy.Delete_management(gdb_path)
+  one_map_gdb(gdb_path,out_name)
+  one_map_domains(gdb_path, domain_list)
+  one_map_feature(gdb_path, out_name)
+  assign_domains(fields)
 
 calls(r'C:\Users\brownr\Desktop\db\PoncyA\OneMap')

@@ -27,7 +27,7 @@ def one_map_feature(gdb_path, out_name, fields):
 
   for field in fields:
     if field[2] != 'NA':
-      arcpy.Addfield_management(
+      arcpy.AddField_management(
         in_table = out_ft, 
         field_name = field[0], 
         field_type = field[1],

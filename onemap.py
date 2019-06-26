@@ -39,9 +39,11 @@ def one_map_feature(out_dir, out_name, fields):
         field_name = field[0], 
         field_type = field[1])
 
-def assign_domains():
+def assign_domains(fields):
   '''Assigns domains to OneMap features'''
-  arcpy.AssignDomainToField_management(out_ft, field_name, domain_name)
+  for field in fields:
+    if field[3] != 'NA':
+    arcpy.AssignDomainToField_management(gdb_path, field[0], field[3])
 
 
 calls():
@@ -53,37 +55,37 @@ calls():
     gdb_path = f'{out_dir}/{gdb_name}'
 
     fields = [
-        ['BufferType','Text',12],
-        ['BufferWidthFeet','Short','NA'],
-        ['CommunityAdvisoryCommittee','Text',100],
-        ['Condition','Text',20],
-        ['ConditionDate','Date','NA'],
-        ['Curbs','Text',3],
-        ['DataSource','Text',5],
-        ['Easement','Text',3],
-        ['LastEditor','Text',50],
-        ['LastEditedDate','Date','NA'],
-        ['MagisterialDistrict','Text',20],
-        ['Maintenance','Text',20],
-        ['Name','Text',100],
-        ['Notes','Text',500],
-        ['OwnerName','Text',100],
-        ['OwnershipType','Text',25],
-        ['Planning Status','Text',25],
-        ['PriorityRank2018','Short','NA'],
-        ['PriorityRank2019','Short','NA'],
-        ['RoadAADT','Short','NA'],
-        ['RoadSpeedLimit','Short','NA'],
-        ['RouteName','Text',100],
-        ['RouteNumber','Text',8],
-        ['Signage','Text',3],
-        ['SourceDocument','Text',100],
-        ['Status','Text',9],
-        ['SurfaceMaterial','Text',20],
-        ['SurfaceCondition','Text',10],
-        ['FacilityType','Text',25],
-        ['WidthFeet','Short','NA'],
-        ['YearBuilt','Short','NA']
+        ['BufferType','Text',12, 'BufferType'],
+        ['BufferWidthFeet','Short','NA','NA'],
+        ['CommunityAdvisoryCommittee','Text',100,'NA'],
+        ['Condition','Text',20,'NA'],
+        ['ConditionDate','Date','NA','NA'],
+        ['Curbs','Text',3,'NA'],
+        ['DataSource','Text',5, 'DataSource'],
+        ['Easement','Text',3, 'YN'],
+        ['LastEditor','Text',50,'NA'],
+        ['LastEditedDate','Date','NA','NA'],
+        ['MagisterialDistrict','Text',20,'MagisterialDistrict'],
+        ['Maintenance','Text',20,'NA'],
+        ['Name','Text',100,'NA'],
+        ['Notes','Text',500,'NA'],
+        ['OwnerName','Text',100,'NA'],
+        ['OwnershipType','Text',25,'OwnershipType'],
+        ['PlanningStatus','Text',25,'PlanningStatus'],
+        ['PriorityRank2018','Short','NA','NA'],
+        ['PriorityRank2019','Short','NA','NA'],
+        ['RoadAADT','Short','NA','NA'],
+        ['RoadSpeedLimit','Short','NA','NA'],
+        ['RouteName','Text',100,'NA'],
+        ['RouteNumber','Text',8,'NA'],
+        ['Signage','Text',3,'YN'],
+        ['SourceDocument','Text',100,'NA'],
+        ['Status','Text',9,'Status'],
+        ['SurfaceMaterial','Text',20,'NA'],
+        ['SurfaceCondition','Text',10,'NA'],
+        ['FacilityType','Text',25,'FacilityType'],
+        ['WidthFeet','Short','NA','NA'],
+        ['YearBuilt','Short','NA','NA']
         ]
 
     domain_list = [    
@@ -91,7 +93,7 @@ calls():
         ['DataSource','Text',['County', 'City', 'TJPDC', 'UVA']],
         ['MagisterialDistrict','Text',['Rivanna', 'Scottsville', 'White Hall', 'Jack Jouett', 'Samuel Miller', 'Rio', 'City'],
         ['OwnershipType','Text',['Public', 'Private', 'Private with Easement']],
-        ['Planning Status','Text',['Proposed', 'Prioritized', 'Planning', 'Design', 'Application Submitted', 'Funded', 'Under Construction', 'Complete']],
+        ['PlanningStatus','Text',['Proposed', 'Prioritized', 'Planning', 'Design', 'Application Submitted', 'Funded', 'Under Construction', 'Complete']],
         ['Status','Text',['Exisiting', 'Future']],
         ['FacilityType','Text',['Sidewalk', 'Urban Sidewalk', 'Pedestrian Path', 'Shared Roadway', 'Bike Lane', 'Paved Shoulder', 'Shared Use Path', 'Urban Shared Use Path', 'Trail Class A', 'Trail Class B']],
         ['YN','TEXT',['YES', 'NO', 'NA']] #Easement, Curbs, Signage 
@@ -99,4 +101,6 @@ calls():
         
     arcpy.Delete_management(gdb_path)
     one_map_gdb(out_location,out_name)
+    one_map_domains(gdb_path, domain_list)
     one_map_feature(out_location, out_name)
+    assign_domains(fields)

@@ -16,7 +16,7 @@ def one_map_domains(gdb_path, domain_list):
   for dom in domain_list:
     arcpy.CreateDomain_management(gdb_path, dom[0], field_type = "TEXT")
 
-def one_map_feature(out_dir, out_name, fields): 
+def one_map_feature(gdb_path, out_name, fields): 
   '''Creates One Map polyline feature class'''
   arcpy.CreateFeatureclass_management(
     out_path = gdb_path, 

@@ -103,6 +103,7 @@ def calls(out_dir):
   one_map_domains(gdb_path, domain_list)
   one_map_feature(gdb_path, out_name, out_ft, fields)
   assign_domains(out_ft, fields)
+  print('Done')
 
 out_dir = input('Existing file directory to store gdb: ')
 calls(out_dir)

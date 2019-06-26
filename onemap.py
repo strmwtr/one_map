@@ -99,7 +99,7 @@ def calls(out_dir):
   arcpy.Delete_management(gdb_path)
   one_map_gdb(out_dir,out_name)
   one_map_domains(gdb_path, domain_list)
-  one_map_feature(gdb_path, out_name)
+  one_map_feature(gdb_path, out_name, fields)
   assign_domains(fields)
 
 calls(r'C:\Users\brownr\Desktop\db\PoncyA\OneMap')

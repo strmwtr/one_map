@@ -48,8 +48,8 @@ def assign_domains(fields):
 def calls(out_dir):
   gdb_name = r'OneMap.gdb'
   out_name = 'OneMap'
-  out_ft = f'{gdb_path}/{out_name}'
-  gdb_path = f'{out_dir}/{gdb_name}'
+  out_ft = f'{gdb_path}\\{out_name}'
+  gdb_path = f'{out_dir}\\{gdb_name}'
 
   fields = [
     ['BufferType','Text',12, 'BufferType'],
@@ -88,7 +88,7 @@ def calls(out_dir):
   domain_list = [    
     ['BufferType','Text',['Barrier', 'Parking Lane', 'Delineators', 'None']],
     ['DataSource','Text',['County', 'City', 'TJPDC', 'UVA']],
-    ['MagisterialDistrict','Text',['Rivanna', 'Scottsville', 'White Hall', 'Jack Jouett', 'Samuel Miller', 'Rio', 'City'],
+    ['MagisterialDistrict','Text',['Rivanna', 'Scottsville', 'White Hall', 'Jack Jouett', 'Samuel Miller', 'Rio', 'City']],
     ['OwnershipType','Text',['Public', 'Private', 'Private with Easement']],
     ['PlanningStatus','Text',['Proposed', 'Prioritized', 'Planning', 'Design', 'Application Submitted', 'Funded', 'Under Construction', 'Complete']],
     ['Status','Text',['Exisiting', 'Future']],

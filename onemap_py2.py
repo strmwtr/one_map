@@ -104,5 +104,4 @@ def calls(out_dir):
   assign_domains(out_ft, fields)
 
 out_dir = raw_input('Existing file directory to store gdb: ')
-#calls(r'C:\Users\brownr\Desktop\db\PoncyA\OneMap')
 calls(out_dir)

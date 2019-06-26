@@ -97,8 +97,7 @@ def calls(out_dir):
     ['FacilityType','Text',['Sidewalk', 'Urban Sidewalk', 'Pedestrian Path', 'Shared Roadway', 'Bike Lane', 'Paved Shoulder', 'Shared Use Path', 'Urban Shared Use Path', 'Trail Class A', 'Trail Class B']],
     ['YN','TEXT',['YES', 'NO', 'NA']] #Easement, Curbs, Signage 
     ]
-        
-  arcpy.Delete_management(gdb_path)
+    
   one_map_gdb(out_dir,out_name)
   one_map_domains(gdb_path, domain_list)
   one_map_feature(gdb_path, out_name, out_ft, fields)

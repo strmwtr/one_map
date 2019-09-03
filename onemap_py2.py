@@ -16,6 +16,11 @@ def one_map_domains(gdb_path, domain_list):
   for dom in domain_list:
     arcpy.CreateDomain_management(gdb_path, dom[0], field_type = "TEXT")
 
+def populate_domains(gdb_path, domain_list):
+  for domain in domain_list:
+    for val in domain[2]:
+      arcpy.AddCodedValueToDomain_management(gdb_path, domain[0], val, val)
+
 def one_map_feature(gdb_path, out_name, out_ft, fields): 
   '''Creates One Map polyline feature class'''
   arcpy.CreateFeatureclass_management(
@@ -57,8 +62,8 @@ def calls(out_dir):
     ['CommunityAdvisoryCommittee','Text',100,'NA'],
     ['Condition','Text',20,'NA'],
     ['ConditionDate','Date','NA','NA'],
-    ['Curbs','Text',3,'NA'],
-    ['DataSource','Text',5, 'DataSource'],
+    ['Curbs','Text',3,'YN'],
+    ['DataSource','Text',10, 'DataSource'],
     ['Easement','Text',3, 'YN'],
     ['LastEditor','Text',50,'NA'],
     ['LastEditedDate','Date','NA','NA'],
@@ -96,6 +101,7 @@ def calls(out_dir):
     
   one_map_gdb(out_dir,out_name)
   one_map_domains(gdb_path, domain_list)
+  populate_domains(gdb_path, domain_list)
   one_map_feature(gdb_path, out_name, out_ft, fields)
   assign_domains(out_ft, fields)
 

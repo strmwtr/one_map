@@ -6,9 +6,9 @@ Repo: https://github.com/strmwtr/one_map
 Requirements: arcpy from ArcMap. Have not tested with arcpy from ArcPro.
 
 
-1. Download the .py file
+1. Download the repo
 
-2. Open File Explorer, find you python.exe. Try these locations first, but they vary by installtion
+2. Open File Explorer, find you python.exe. Try this location first, but location varies by installtion
 	- ArcMap: C:\Python27\ArcGIS10.{x}\python.exe
 
 3. Open the Command Prompt

@@ -3,8 +3,7 @@ Author: Bob Brown - brownr@charlottesville.org
 Created: Summer 2019
 Purpose: Create database and data structure for Bicycle and Pedestrian One Map project.
 Repo: https://github.com/strmwtr/one_map
-Req: Python 2. If you have ArcMap on your machine, you can run this version. If you have 
-ArcPro, run onemap_py3.py instead.
+Req: Python 2 and the arcpy from ArcMap. Script not tested on arcpy from ArcPro
 '''
 import arcpy
 
@@ -70,8 +69,6 @@ def calls(out_dir):
     ['OwnerName','Text',100,'NA'],
     ['OwnershipType','Text',25,'OwnershipType'],
     ['PlanningStatus','Text',25,'PlanningStatus'],
-    ['PriorityRank2018','Short','NA','NA'],
-    ['PriorityRank2019','Short','NA','NA'],
     ['RoadAADT','Short','NA','NA'],
     ['RoadSpeedLimit','Short','NA','NA'],
     ['RouteName','Text',100,'NA'],
@@ -101,6 +98,7 @@ def calls(out_dir):
   one_map_domains(gdb_path, domain_list)
   one_map_feature(gdb_path, out_name, out_ft, fields)
   assign_domains(out_ft, fields)
-  print('Done')
+
 out_dir = raw_input('Existing file directory to store gdb: ')
 calls(out_dir)
+print('Done')

@@ -3,21 +3,20 @@ Contact Info: brownr@charlottesville.org
 Created: June 2019
 Purpose: Create database and data structure for Bicycle and Pedestrian One Map project.
 Repo: https://github.com/strmwtr/one_map
-File onemap_py2 uses python 2 to create gdb and feature class. If you have ArcMap on your computer run this version.
-File onemap_py3 uses python 3 to create gdb and feature class. If you have ArcPro on your computer run this version.
+Requirements: arcpy from ArcMap. Have not tested with arcpy from ArcPro.
 
-If you have never run a script before follow these instructions:
 
-1. Download the .py file that matches your python version (onemap_py2 vs onemap_py3)
+1. Download the .py file
+
 2. Open File Explorer, find you python.exe. Try these locations first, but they vary by installtion
-	- ArcPro: C:Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe
 	- ArcMap: C:\Python27\ArcGIS10.{x}\python.exe
+
 3. Open the Command Prompt
 	- Crtl + W
 	- Type "cmd", hit enter
 
 4. Enter the following, substituting your python.exe and onemap_pyX.py paths in the Command Prompt Window
-	C:\path\to\python.exe C:\path\to\onemap_pyX.py
+	C:\path\to\python.exe C:\path\to\onemap_py2.py
 
 5. Hit enter.
 
